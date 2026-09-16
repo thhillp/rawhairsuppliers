@@ -1,0 +1,16 @@
+# rawhairsuppliers.com — Hostinger (Apache)
+# Serve index.html for directory URLs (blog/, products/, etc.)
+DirectoryIndex index.html index.php
+
+# No directory listings
+Options -Indexes
+
+# Custom 404
+ErrorDocument 404 /404.html
+
+# Canonical: www -> non-www (scheme-preserving so it's safe before/after SSL)
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [L,R=301]
+
+# --- HTTPS force is added AFTER SSL is confirmed active (see deploy notes) ---
