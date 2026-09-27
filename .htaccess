@@ -5,6 +5,9 @@ DirectoryIndex index.html index.php
 # No directory listings
 Options -Indexes
 
+# Hide repo tooling (Claude Code agent config)
+RedirectMatch 404 ^/\.claude(/|$)
+
 # Custom 404
 ErrorDocument 404 /404.html
 
